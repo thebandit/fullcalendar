@@ -61,7 +61,7 @@ function ResourceEventRenderer() {
 	function compileSegs(events) {
 		var rowCnt = getRowCnt(),
 			colCnt = getColCnt(),
-			resources = getResources(),
+			resources = t.getResources,
 			d1 = cloneDate(t.visStart),
 			d2 = addDays(cloneDate(d1), colCnt),
 			visEventsEnds = $.map(events, exclEndDay),
@@ -77,7 +77,7 @@ function ResourceEventRenderer() {
 				return event.end || addDays(event.start, 1);
 			});
 		}
-
+		
 		for (i=0; i<rowCnt; i++) {
 			currentResource = resources[i].id;
 			row = stackSegs(sliceSegs(events, visEventsEnds, d1, d2));

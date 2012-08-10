@@ -1,6 +1,6 @@
 
  
-function Calendar(element, options, eventSources) {
+function Calendar(element, options, eventSources, resourceSources) {
 	var t = this;
 	
 	
@@ -9,6 +9,7 @@ function Calendar(element, options, eventSources) {
 	t.render = render;
 	t.destroy = destroy;
 	t.refetchEvents = refetchEvents;
+	t.refetchResources = refetchResources;
 	t.reportEvents = reportEvents;
 	t.reportEventChange = reportEventChange;
 	t.rerenderEvents = rerenderEvents;
@@ -35,6 +36,8 @@ function Calendar(element, options, eventSources) {
 	var isFetchNeeded = t.isFetchNeeded;
 	var fetchEvents = t.fetchEvents;
 	
+	ResourceManager.call(t, options);
+	var fetchResources = t.fetchResources;
 	
 	// locals
 	var _element = element[0];
@@ -324,6 +327,10 @@ function Calendar(element, options, eventSources) {
 	
 	function refetchEvents() {
 		fetchEvents(currentView.visStart, currentView.visEnd); // will call reportEvents
+	}
+	
+	function refetchResources() {
+		fetchResources(false);
 	}
 	
 	
