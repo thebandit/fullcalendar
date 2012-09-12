@@ -68,6 +68,7 @@ function ResourceEventRenderer() {
 			i, row,
 			j, level,
 			k, seg, currentResource, viewName = getViewName(),
+			l,
 			segs=[];
 			
 		if (viewName == 'resourceDay') {
@@ -81,15 +82,16 @@ function ResourceEventRenderer() {
 		for (i=0; i<rowCnt; i++) {
 			currentResource = resources[i].id;
 			row = stackSegs(sliceSegs(events, visEventsEnds, d1, d2));
-
 			for (j=0; j<row.length; j++) {
 				level = row[j];
 				for (k=0; k<level.length; k++) {
 					seg = level[k];
 					seg.row = i;
 					seg.level = j; // not needed anymore
-					if(currentResource == seg['event'].resource) {
-						segs.push(seg);
+					for(l=0; l<seg.event.resource.length; l++) {
+						if(currentResource == seg.event.resource[l]) {
+							segs.push(seg);
+						}
 					}
 				}
 			}

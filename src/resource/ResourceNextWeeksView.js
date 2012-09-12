@@ -28,7 +28,7 @@ function ResourceNextWeeksView(element, calendar) {
 		var visStart = cloneDate(start);
 		var visEnd = cloneDate(end);
 		var weekends = opt('weekends');
-
+		
 		if (!weekends) {
 			skipWeekend(visStart);
 			skipWeekend(visEnd, -1, true);
